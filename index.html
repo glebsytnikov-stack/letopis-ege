@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5efde">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <meta name="description" content="Светлый пиксельный тренажёр ЕГЭ по истории России: даты, термины, правители, события, культура и карты-схемы.">
+  <title>Летопись — ЕГЭ по истории</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"><span>✦</span><b>Л</b></div>
+        <div><div class="brand-name">ЛЕТОПИСЬ</div><div class="brand-sub">история • ЕГЭ</div></div>
+      </div>
+      <div class="side-rule"><span>❧</span><i></i><span>❧</span></div>
+      <nav class="main-nav" aria-label="Главное меню">
+        <button class="nav-item active" data-page="home"><span class="nav-ico">⌂</span><span>Главная</span></button>
+        <button class="nav-item" data-page="cards"><span class="nav-ico">▤</span><span>Карточки</span><small id="side-card-count"></small></button>
+        <button class="nav-item" data-page="trainer"><span class="nav-ico">⚔</span><span>Тренажёр</span></button>
+        <button class="nav-item" data-page="maps"><span class="nav-ico">⌖</span><span>Карты и схемы</span></button>
+        <button class="nav-item" data-page="progress"><span class="nav-ico">♜</span><span>Мой прогресс</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="daily-mini">
+          <div class="daily-icon">☀</div>
+          <div><b>Задача дня</b><span>10 карточек без ошибок</span></div>
+        </div>
+        <div class="side-quote">«История — это фонарь в будущее»<small>— учебный девиз летописца</small></div>
+        <div class="version">ВЕРСИЯ 1.0 · ЕГЭ 2027</div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobile-menu" aria-label="Открыть меню">☰</button>
+        <div class="crumb"><span>ТВОЯ ЛЕТОПИСЬ</span><b>/</b><strong id="crumb-title">Главная</strong></div>
+        <div class="top-actions">
+          <div class="streak-chip"><span>🔥</span><b id="streak-top">0</b><small>дней подряд</small></div>
+          <button class="profile-chip" id="profile-button" title="Мой прогресс"><span class="profile-avatar">✺</span><span>Летописец</span><span class="chev">⌄</span></button>
+        </div>
+      </header>
+
+      <section class="page active" id="page-home">
+        <div class="hero panel">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="pixel-dot"></span> ТВОЙ ИСТОРИЧЕСКИЙ ПУТЬ</div>
+            <h1>От Древней Руси<br>до наших дней<span class="title-period">.</span></h1>
+            <p>Запоминай даты, разбирай термины и проходи испытания. Готовься к ЕГЭ по истории шаг за шагом — без скучной зубрёжки.</p>
+            <div class="hero-buttons">
+              <button class="btn btn-primary" data-go="cards">Начать учить <span>→</span></button>
+              <button class="btn btn-quiet" data-go="trainer">Испытать себя <span>⚔</span></button>
+            </div>
+            <div class="hero-note"><span>✧</span> Сегодня достаточно сделать один небольшой шаг.</div>
+          </div>
+          <div class="hero-art" aria-label="Пиксельная иллюстрация древнерусского города">
+            <div class="sun-pixel"></div><div class="cloud cloud-a"></div><div class="cloud cloud-b"></div>
+            <div class="art-banner">ЗНАНИЕ — СИЛА</div>
+            <div class="wall"><div class="tower tower-left"><i></i><b></b></div><div class="tower tower-mid"><i></i><b></b></div><div class="tower tower-right"><i></i><b></b></div><div class="wall-line"></div></div>
+            <div class="river"></div><div class="pixel-tree tree-a"></div><div class="pixel-tree tree-b"></div><div class="pixel-tree tree-c"></div>
+            <div class="art-caption"><span>✦</span> Путь летописца <span>✦</span></div>
+          </div>
+          <div class="hero-ornament">✥</div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-icon date-icon">◷</div><div><strong id="stat-known">0</strong><span>выучено карточек</span></div><small>из <b id="stat-total">0</b></small></div>
+          <div class="stat-card"><div class="stat-icon xp-icon">✦</div><div><strong id="stat-xp">0</strong><span>очков опыта</span></div><small>XP</small></div>
+          <div class="stat-card"><div class="stat-icon hard-icon">⚑</div><div><strong id="stat-hard">0</strong><span>на повторение</span></div><small>карточки</small></div>
+          <div class="stat-card"><div class="stat-icon streak-icon">♨</div><div><strong id="stat-streak">0</strong><span>дней подряд</span></div><small>серия</small></div>
+        </div>
+
+        <div class="section-heading"><div><div class="eyebrow">ВЫБЕРИ СВОЙ МАРШРУТ</div><h2>Разделы обучения</h2></div><span class="heading-ornament">✧ ─ ✧</span></div>
+        <div class="deck-grid">
+          <button class="deck-card deck-dates" data-deck="dates"><span class="deck-symbol">◷</span><span class="deck-tag">ХРОНОЛОГИЯ</span><b>Даты и события</b><small>Запоминай, что и когда произошло</small><span class="deck-count" id="count-dates">— карт. <i>→</i></span></button>
+          <button class="deck-card deck-terms" data-deck="terms"><span class="deck-symbol">❖</span><span class="deck-tag">СЛОВАРЬ</span><b>Исторические термины</b><small>Понятия, определения и примеры</small><span class="deck-count" id="count-terms">— карт. <i>→</i></span></button>
+          <button class="deck-card deck-rulers" data-deck="rulers"><span class="deck-symbol">♛</span><span class="deck-tag">ЛИЧНОСТИ</span><b>Правители и деятели</b><small>Кто правил и чем запомнился</small><span class="deck-count" id="count-rulers">— карт. <i>→</i></span></button>
+          <button class="deck-card deck-events" data-deck="events"><span class="deck-symbol">⚔</span><span class="deck-tag">СРАЖЕНИЯ</span><b>Войны и процессы</b><small>Причины, ход и итоги событий</small><span class="deck-count" id="count-events">— карт. <i>→</i></span></button>
+          <button class="deck-card deck-culture" data-deck="culture"><span class="deck-symbol">▧</span><span class="deck-tag">КУЛЬТУРА</span><b>Культура и памятники</b><small>Авторы, произведения и архитектура</small><span class="deck-count" id="count-culture">— карт. <i>→</i></span></button>
+          <button class="deck-card deck-maps" data-page="maps"><span class="deck-symbol">⌖</span><span class="deck-tag">ОРИЕНТИРОВАНИЕ</span><b>Карты и схемы</b><small>Походы, маршруты и последовательности</small><span class="deck-count">3 испытания <i>→</i></span></button>
+        </div>
+
+        <div class="bottom-grid">
+          <div class="panel continue-panel"><div class="panel-title"><span>✦</span><div><b>Продолжить обучение</b><small>Вернись к карточкам, которые ещё не закрепил</small></div></div><div class="continue-row"><div class="book-stack">▤</div><div class="continue-info"><b>Повторение сложных карточек</b><span id="hard-subtitle">Пока нет карточек на повторение — так держать!</span></div><button class="btn btn-small btn-outline" id="repeat-hard">Повторить →</button></div></div>
+          <div class="panel exam-panel"><div class="exam-seal">ЕГЭ<br><b>27</b></div><div><div class="eyebrow">АКТУАЛЬНЫЙ ФОРМАТ</div><b>Готовься с учётом ЕГЭ‑2027</b><p>Задания на даты, источники, понятия и аргументацию — в одной учебной карте.</p><button class="text-link" data-go="trainer">Перейти к тренировке →</button></div></div>
+        </div>
+        <footer class="footer-note">Материалы — учебная подборка для самостоятельной подготовки. Сверяй формулировки с актуальными документами ФИПИ.</footer>
+      </section>
+
+      <section class="page" id="page-cards">
+        <div class="page-intro"><div><div class="eyebrow">УЧИМ И ЗАПОМИНАЕМ</div><h1>Карточки <span class="title-period">.</span></h1><p>Переворачивай карточки, отмечай выученное и возвращайся к сложному.</p></div><div class="intro-badge">▤ <b id="cards-total-label">0</b><small>карточек в летописи</small></div></div>
+        <div class="filters panel"><div class="filter-tabs" id="deck-tabs"><button class="filter-tab active" data-filter="all">Все</button><button class="filter-tab" data-filter="dates">Даты</button><button class="filter-tab" data-filter="terms">Термины</button><button class="filter-tab" data-filter="rulers">Правители</button><button class="filter-tab" data-filter="events">События</button><button class="filter-tab" data-filter="culture">Культура</button><button class="filter-tab" data-filter="russia">История России</button><button class="filter-tab" data-filter="world">Всеобщая</button><button class="filter-tab" data-filter="hard">Сложные</button><button class="filter-tab" data-filter="favorites">Избранное</button></div><div class="search-wrap"><span>⌕</span><input id="card-search" type="search" placeholder="Найти дату, термин, личность…"></div></div>
+        <div class="study-layout">
+          <aside class="study-sidebar panel"><div class="study-sidebar-title">ТВОЯ КОЛОДА</div><div id="study-deck-list"></div><div class="study-tip"><span>✧</span><b>Совет летописца</b><p>Сначала попробуй вспомнить ответ сам, и только потом переворачивай карточку.</p></div></aside>
+          <div class="study-main">
+            <div class="study-meta"><span id="study-category">ВСЕ КАРТОЧКИ</span><span id="study-position">0 / 0</span></div>
+            <div class="flashcard-wrap" id="flashcard-wrap">
+              <button class="flashcard" id="flashcard" aria-label="Перевернуть карточку">
+                <div class="flash-face flash-front"><div class="card-corner corner-tl">✥</div><div class="card-category" id="flash-category">ИСТОРИЯ</div><div class="flash-word" id="flash-front">Выбери колоду</div><div class="flip-hint">НАЖМИ, ЧТОБЫ УЗНАТЬ ОТВЕТ <span>↻</span></div><div class="card-corner corner-br">✥</div></div>
+                <div class="flash-face flash-back"><div class="card-category">ЗАПОМНИ</div><div class="flash-answer" id="flash-back">Тут появится объяснение.</div><div class="flash-explain" id="flash-hint"></div><div class="flip-hint">НАЖМИ, ЧТОБЫ ВЕРНУТЬСЯ <span>↻</span></div></div>
+              </button>
+            </div>
+            <div class="card-controls"><button class="icon-button" id="card-prev" aria-label="Предыдущая карточка">←</button><button class="icon-button fav-button" id="card-favorite" aria-label="В избранное">☆</button><button class="btn btn-hard" id="mark-hard">⚑ Сложно</button><button class="btn btn-known" id="mark-known">✓ Знаю</button><button class="icon-button" id="card-next" aria-label="Следующая карточка">→</button></div>
+            <div class="study-progress"><div class="progress-track"><i id="study-progress-fill"></i></div><span id="study-progress-text">Начни с первой карточки</span></div>
+            <div class="card-tags" id="card-tags"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="page-trainer">
+        <div class="page-intro"><div><div class="eyebrow">ПРОВЕРЬ СЕБЯ</div><h1>Тренажёр <span class="title-period">.</span></h1><p>Небольшие испытания помогают перевести знания в экзаменационный навык.</p></div><div class="intro-badge sword-badge">⚔ <b>Практика</b><small>без оценок, но с опытом</small></div></div>
+        <div class="trainer-modes" id="trainer-modes">
+          <button class="mode-card active" data-mode="quiz"><span>✦ 01</span><b>Битва за дату</b><small>Выбери верное событие или год</small><i>→</i></button>
+          <button class="mode-card" data-mode="terms"><span>✦ 02</span><b>Слово летописца</b><small>Проверь знание исторических понятий</small><i>→</i></button>
+          <button class="mode-card" data-mode="order"><span>✦ 03</span><b>Хронолет</b><small>Расположи события по порядку</small><i>→</i></button>
+          <button class="mode-card" data-mode="exam"><span>✦ 04</span><b>Тренировка ЕГЭ‑2027</b><small>Понятия, источники и аргументация</small><i>→</i></button>
+        </div>
+        <div class="trainer-area panel" id="trainer-area">
+          <div class="trainer-start"><div class="trainer-emblem">⚔</div><div><div class="eyebrow">ГОТОВ К ИСПЫТАНИЮ?</div><h2 id="trainer-title">Битва за дату</h2><p id="trainer-description">10 вопросов на знание ключевых событий и дат. За каждый правильный ответ получишь очки опыта.</p><button class="btn btn-primary" id="start-trainer">Начать испытание <span>→</span></button></div></div>
+        </div>
+        <div class="exam-structure panel"><div class="exam-structure-head"><div><div class="eyebrow">НА ЧТО ОБРАТИТЬ ВНИМАНИЕ</div><h2>ЕГЭ по истории — 2027</h2></div><span class="fipi-mark">ФИПИ · 2027</span></div><div class="exam-changes"><div><b>22</b><span>задания в варианте</span></div><div><b>43</b><span>максимальный первичный балл</span></div><div><b>15</b><span>исторический источник по всеобщей истории</span></div><div><b>20</b><span>историческое понятие и его использование</span></div><div><b>22</b><span>два аргумента по истории России</span></div></div><p class="fine-print">Нумерация и формулировки приведены по материалам ФИПИ на 2027 год. Тренажёр не заменяет демонстрационный вариант и критерии оценивания. <a href="https://fipi.ru/ege/demoversii-specifikacii-kodifikatory" target="_blank" rel="noopener">Официальные документы ФИПИ →</a></p></div>
+      </section>
+
+      <section class="page" id="page-maps">
+        <div class="page-intro"><div><div class="eyebrow">ПРОСТРАНСТВО И ВРЕМЯ</div><h1>Карты и схемы <span class="title-period">.</span></h1><p>Восстанавливай маршруты походов, последовательность сражений и ход исторических процессов.</p></div><div class="intro-badge map-badge">⌖ <b>3 маршрута</b><small>схемы для тренировки</small></div></div>
+        <div class="map-layout"><div class="map-list" id="map-list"></div><div class="map-workspace panel" id="map-workspace"><div class="map-placeholder"><div class="map-compass">✥</div><h2>Выбери исторический маршрут</h2><p>Схемы помогают закрепить хронологию и последовательность событий.</p></div></div></div>
+        <div class="map-disclaimer">Схемы показывают учебную последовательность событий и не претендуют на точное географическое отображение исторических границ.</div>
+      </section>
+
+      <section class="page" id="page-progress">
+        <div class="page-intro"><div><div class="eyebrow">ТВОИ УСПЕХИ</div><h1>Мой прогресс <span class="title-period">.</span></h1><p>Каждая выученная карточка — маленькая победа на пути к экзамену.</p></div><div class="intro-badge level-badge">✦ <b id="level-name">Ученик</b><small id="level-xp">0 XP</small></div></div>
+        <div class="progress-overview panel"><div class="progress-big"><div class="progress-ring" id="progress-ring"><div><b id="progress-percent">0%</b><small>выучено</small></div></div><div class="progress-big-copy"><div class="eyebrow">ОБЩИЙ РЕЗУЛЬТАТ</div><h2 id="progress-title">Начни свой путь!</h2><p id="progress-copy">Отмечай карточки, которые уже знаешь. Приложение сохранит прогресс на этом устройстве.</p></div></div><div class="progress-summary"><div><b id="progress-known">0</b><span>выучено</span></div><div><b id="progress-hard">0</b><span>сложные</span></div><div><b id="progress-fav">0</b><span>избранное</span></div><div><b id="progress-xp">0</b><span>опыт</span></div></div></div>
+        <div class="progress-columns"><div class="panel category-progress"><div class="panel-heading"><b>Знания по разделам</b><span>✧</span></div><div id="category-progress-list"></div></div><div class="panel achievements"><div class="panel-heading"><b>Достижения летописца</b><span>♜</span></div><div id="achievement-list"></div></div></div>
+        <div class="progress-actions"><button class="btn btn-outline" id="export-progress">Скачать мой прогресс</button><button class="btn btn-danger-quiet" id="reset-progress">Сбросить прогресс</button></div>
+      </section>
+
+      <footer class="app-footer"><span>✥ ЛЕТОПИСЬ</span><span>Сделано для вдумчивой подготовки к ЕГЭ</span><span>2027</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal-backdrop" id="modal-backdrop"><div class="modal panel"><button class="modal-close" id="modal-close">×</button><div id="modal-content"></div></div></div>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
